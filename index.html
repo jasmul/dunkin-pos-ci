@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dunkin' Donuts POS</title>
+    <meta charset="utf-8" />
+    <style>
+        body { font-family: Arial; background: #f8f0f6; margin:0; padding:30px; }
+        .pos-box { background:white; width:380px; margin:auto; padding:25px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+        h1 { text-align:center; color:#d3548e; margin:0 0 15px; }
+        .item { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee; font-size:18px; align-items:center; }
+        .item button { font-size:14px; padding:6px 10px; background:#d3548e; color:white; border:none; border-radius:6px; cursor:pointer; }
+        #total { font-size:20px; font-weight:bold; text-align:right; margin-top:20px; color:#444; }
+        .checkout-btn { width:100%; padding:12px; margin-top:12px; background:#2d8a34; color:white; border:none; border-radius:8px; cursor:pointer; font-size:16px; }
+    </style>
+</head>
+<body>
+
+<div class="pos-box">
+    <h1>Dunkin' POS</h1>
+
+    <div class="item">
+        <span>🍩 Donut</span>
+        <span>RM 3.50 <button onclick="add(3.5)">Add</button></span>
+    </div>
+
+    <div class="item">
+        <span>☕ Coffee</span>
+        <span>RM 5.00 <button onclick="add(5)">Add</button></span>
+    </div>
+
+    <div class="item">
+        <span>🥤 Ice Latte</span>
+        <span>RM 7.00 <button onclick="add(7)">Add</button></span>
+    </div>
+
+    <p id="total">Total: RM 0.00</p>
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+    let total = 0;
+
+    function add(amount) {
+        total = +(total + amount).toFixed(2);
+        document.getElementById("total").innerHTML = "Total: RM " + total.toFixed(2);
+    }
+
+    function checkout() {
+        alert("Order Completed! Total: RM " + total.toFixed(2));
+        total = 0;
+        document.getElementById("total").innerHTML = "Total: RM 0.00";
+    }
+
+    function calculateTotal(a, b) { return +(a + b).toFixed(2); }
+
+    if (typeof module !== 'undefined') module.exports = { calculateTotal };
+</script>
+
+</body>
+</html>
